@@ -1,0 +1,190 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "teja",
+      "email": "teja@gmail.com",
+      "password": "admin123"
+    },
+    {
+      "name": "Manoj",
+      "email": "mk180220@gmail.com",
+      "password": "admin123",
+      "id": "qo5-BYBAAF0"
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "1",
+      "name": "Hyundai Creta",
+      "brand": "Hyundai",
+      "category": "SUV",
+      "type": "Car",
+      "budget": "High",
+      "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf",
+      "description": "Comfortable SUV with a stylish design, spacious interiors and excellent driving performance.",
+      "fuelType": "Petrol",
+      "transmission": "Automatic",
+      "seatingCapacity": 5,
+      "availability": "Available",
+      "pricePerDay": 2500,
+      "currency": "INR",
+      "rating": 4.8,
+      "stock": 3,
+      "location": "Visakhapatnam",
+      "highlight": "Premium SUV",
+      "color": "White",
+      "features": [
+        "Air Conditioning",
+        "Power Steering",
+        "Bluetooth Connectivity",
+        "Airbags",
+        "GPS Navigation"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Maruti Swift",
+      "brand": "Maruti Suzuki",
+      "category": "Hatchback",
+      "type": "Car",
+      "budget": "Medium",
+      "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70",
+      "description": "Compact and fuel-efficient hatchback suitable for city travel and short trips.",
+      "fuelType": "Petrol",
+      "transmission": "Manual",
+      "seatingCapacity": 5,
+      "availability": "Available",
+      "pricePerDay": 1500,
+      "currency": "INR",
+      "rating": 4.6,
+      "stock": 5,
+      "location": "Visakhapatnam",
+      "highlight": "Fuel Efficient",
+      "color": "Red",
+      "features": [
+        "Air Conditioning",
+        "Power Windows",
+        "ABS",
+        "Bluetooth Connectivity"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Toyota Innova Crysta",
+      "brand": "Toyota",
+      "category": "MUV",
+      "type": "Car",
+      "budget": "High",
+      "image": "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b",
+      "description": "Spacious family vehicle with comfortable seating and powerful performance for long journeys.",
+      "fuelType": "Diesel",
+      "transmission": "Manual",
+      "seatingCapacity": 7,
+      "availability": "Available",
+      "pricePerDay": 3500,
+      "currency": "INR",
+      "rating": 4.9,
+      "stock": 2,
+      "location": "Visakhapatnam",
+      "highlight": "Family Travel",
+      "color": "Silver",
+      "features": [
+        "7 Seater",
+        "Air Conditioning",
+        "Rear AC Vents",
+        "ABS",
+        "Power Steering"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Royal Enfield Classic 350",
+      "brand": "Royal Enfield",
+      "category": "Cruiser",
+      "type": "Bike",
+      "budget": "Medium",
+      "image": "https://images.unsplash.com/photo-1558981806-ec527fa84c39",
+      "description": "Classic motorcycle offering a comfortable riding experience and powerful road presence.",
+      "fuelType": "Petrol",
+      "transmission": "Manual",
+      "seatingCapacity": 2,
+      "availability": "Available",
+      "pricePerDay": 1200,
+      "currency": "INR",
+      "rating": 4.8,
+      "stock": 4,
+      "location": "Visakhapatnam",
+      "highlight": "Classic Design",
+      "color": "Black",
+      "features": [
+        "350cc Engine",
+        "Disc Brakes",
+        "Comfortable Seating",
+        "ABS"
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Honda Activa 6G",
+      "brand": "Honda",
+      "category": "Scooter",
+      "type": "Bike",
+      "budget": "Low",
+      "image": "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
+      "description": "Reliable and fuel-efficient scooter ideal for daily commuting and city travel.",
+      "fuelType": "Petrol",
+      "transmission": "Automatic",
+      "seatingCapacity": 2,
+      "availability": "Available",
+      "pricePerDay": 500,
+      "currency": "INR",
+      "rating": 4.5,
+      "stock": 8,
+      "location": "Visakhapatnam",
+      "highlight": "Best for City Rides",
+      "color": "Blue",
+      "features": [
+        "Automatic Transmission",
+        "External Fuel Filling",
+        "Comfortable Seat",
+        "LED Headlamp"
+      ]
+    },
+    {
+      "id": "6",
+      "name": "KTM Duke 200",
+      "brand": "KTM",
+      "category": "Sports Bike",
+      "type": "Bike",
+      "budget": "Medium",
+      "image": "https://images.unsplash.com/photo-1558981806-ec527fa84c39",
+      "description": "Sporty motorcycle designed for performance, agility and an exciting riding experience.",
+      "fuelType": "Petrol",
+      "transmission": "Manual",
+      "seatingCapacity": 2,
+      "availability": "Available",
+      "pricePerDay": 1000,
+      "currency": "INR",
+      "rating": 4.7,
+      "stock": 3,
+      "location": "Visakhapatnam",
+      "highlight": "Sporty Performance",
+      "color": "Orange",
+      "features": [
+        "200cc Engine",
+        "ABS",
+        "Digital Display",
+        "Disc Brakes"
+      ]
+    },
+    {
+      "name": "Amaze",
+      "brand": "Honda",
+      "image": "https://img.gaadicdn.com/images/car-images/large/Honda/Amaze/12185/1733310507376/222_Platinum-White-Pearl_dadeeb.jpg",
+      "description": "5 seater\nsedan\nA/c",
+      "id": "Sc1FSX_ZGEQ"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
