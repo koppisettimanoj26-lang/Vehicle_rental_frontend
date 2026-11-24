@@ -370,16 +370,27 @@ nav a:hover {
   margin: 8px 0;
 }
 
-.wishlist-content button {
+.wishlist-content button:first-of-type{
   width: 100%;
   padding: 12px;
   margin-top: 15px;
+  margin-bottom: 10px;
   border: none;
   background: crimson;
   color: white;
   border-radius: 8px;
   cursor: pointer;
 }
+.wishlist-content button:last-of-type{
+  width: 100%;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 
 .wishlist-content button:hover {
   background: darkred;
@@ -409,4 +420,7 @@ nav a:hover {
 .filters input:focus,
 .filters select:focus{
   border-color:#0d6efd;
+}
+.submit-btn{
+  
 }

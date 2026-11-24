@@ -86,6 +86,10 @@ function Wishlist() {
                       Remove
                     </button>
 
+                    <button>
+                      Book Now
+                    </button>
+
                   </div>
 
                 </div>

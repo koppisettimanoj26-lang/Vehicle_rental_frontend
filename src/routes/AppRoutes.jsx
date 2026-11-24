@@ -19,6 +19,8 @@ function AppRoutes() {
       <Route path="/Vehicles" element={<Vehicles />} />
 
       <Route path="/vehicles/:id" element={<VehicleDetails />} />
+
+    
       
       <Route
           path="/addVehicle"
@@ -44,7 +46,7 @@ function AppRoutes() {
       />
       <Route
         path="/wishlist"
-        element={<Wishlist />}
+        element={<ProtectedRoute><Wishlist /></ProtectedRoute>}
       />
 
 

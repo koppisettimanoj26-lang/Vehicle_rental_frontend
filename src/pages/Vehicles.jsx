@@ -104,7 +104,7 @@ if (sort === "low") {
    <>
      <h1>Popular Vehicles</h1>
 
-     <Link to="/addVehicle">
+     <Link to="/addVehicle" className="submit-btn" style={{marginBottom: '20px',display:"inline-block",width:'20%'}}>
         Add Product
     </Link>
 
