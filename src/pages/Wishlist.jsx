@@ -7,8 +7,10 @@ import {
   removeWishlist
 } from "../features/wishlistSlice";
 
-function Wishlist() {
+import { useNavigate } from "react-router-dom";
 
+function Wishlist() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const wishlist = useSelector(
@@ -86,7 +88,13 @@ function Wishlist() {
                       Remove
                     </button>
 
-                    <button>
+                    <button
+                        onClick={() =>
+                        navigate("/booking", {
+                        state: { vehicle: product }
+                        })
+                      }
+                    >
                       Book Now
                     </button>
 

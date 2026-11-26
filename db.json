@@ -1,16 +1,18 @@
 {
   "users": [
-    {
-      "id": "1",
-      "name": "teja",
-      "email": "teja@gmail.com",
-      "password": "admin123"
+     {
+      "id": 1,
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "password": "admin123",
+      "role": "admin"
     },
     {
+      "id": 2,
       "name": "Manoj",
-      "email": "mk180220@gmail.com",
-      "password": "admin123",
-      "id": "qo5-BYBAAF0"
+      "email": "manoj@gmail.com",
+      "password": "manoj123",
+      "role": "user"
     }
   ],
   "vehicles": [

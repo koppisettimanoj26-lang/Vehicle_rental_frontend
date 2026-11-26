@@ -1,59 +1,90 @@
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addWishlist } from "../features/wishlistSlice";
 
-function VehicleCard({ vehicle, onDelete }) {
+function VehicleCard({ vehicle, onDelete, onEdit }) {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
- return (
-   <div className="card">
-     <img
-       src={vehicle.image}
-       alt={vehicle.name}
-     />
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
 
-     <h3>{vehicle.name}</h3>
+  return (
+    <div className="card">
 
-     <p>{vehicle.brand}</p>
+      {/* Vehicle Image and Wishlist Heart */}
+      <div className="card-image">
 
-     <p>{vehicle.category}</p>
+        <img
+          src={vehicle.image}
+          alt={vehicle.name}
+        />
 
-     <p>⭐ {vehicle.rating}</p>
+        <button
+          className="vehicle-wishlist-icon"
+          onClick={() => dispatch(addWishlist(vehicle))}
+          title="Add to Wishlist"
+        >
+          ♥
+        </button>
 
-    <div className="card-actions">
-     <Link
-      className="view-btn"
-       to={`/vehicles/${vehicle.id}`}
-     >
-       View Details
-     </Link>
+      </div>
 
-     <Link
-        className="edit-btn"
-        to={`/editvehicles/${vehicle.id}`}
-     >
-        Edit
-     </Link>
+      <h3>{vehicle.name}</h3>
 
-     <button
-        className="delete-btn"
-        onClick={() =>
-        onDelete(vehicle.id)
-     }
-    >
-        Delete
-    </button>
-</div>
-    <button
-     className="edit-btn"
-     onClick={()=>dispatch(addWishlist(vehicle))}>
-      ❤ Add To Wishlist
-    </button>
+      <p>{vehicle.brand}</p>
 
+      <p>{vehicle.category}</p>
 
-   </div>
- );
+      <p>⭐ {vehicle.rating}</p>
+
+      <div className="card-actions">
+
+        <Link
+          className="view-btn"
+          to={`/vehicles/${vehicle.id}`}
+        >
+          View Details
+        </Link>
+
+        {user && user.role === "admin" && (
+          <>
+            <button
+              className="edit-btn"
+              onClick={() => onEdit(vehicle.id)}
+            >
+              Edit
+            </button>
+
+            <button
+              className="delete-btn"
+              onClick={() => onDelete(vehicle.id)}
+            >
+              Delete
+            </button>
+          </>
+        )}
+
+        {user && user.role === "user" && (
+          <button
+            className="edit-btn"
+            onClick={() =>
+              navigate("/booking", {
+                state: { vehicle: vehicle }
+              })
+            }
+          >
+            Book Now
+          </button>
+        )}
+
+      </div>
+
+    </div>
+  );
 }
 
 export default VehicleCard;

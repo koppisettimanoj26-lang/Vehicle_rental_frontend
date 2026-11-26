@@ -1,19 +1,26 @@
+
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loadWishlist } from "../features/wishlistSlice";
 
 function Logout() {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
 
+    // Clear previous user's wishlist from Redux
+    dispatch(loadWishlist([]));
+
+    // Remove logged-in user
     localStorage.removeItem("user");
 
-    navigate("/login");
+    // Navigate to login page
+    navigate("/login", { replace: true });
 
-    window.location.reload();
-
-  }, []);
+  }, [navigate, dispatch]);
 
   return null;
 }

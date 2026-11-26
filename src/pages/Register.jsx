@@ -22,7 +22,12 @@ function Register() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    await api.post("/users", user);
+    await api.post("/users", {
+    ...user,
+    role: "user"
+  });
+
+  alert("Registration successful!");
 
     navigate("/login");
   }

@@ -1,42 +1,83 @@
+
 import { createSlice } from "@reduxjs/toolkit";
 
-const wishlistSlice=createSlice({
-    name:'wishlist',
-    initialState:
-    JSON.parse(
-    localStorage.getItem(
-      "carwishlist"
-    )
-  ) || [],
-    reducers:{
-        addWishlist:(state,action)=>{
-            state.push(action.payload)
-            alert('add to wishlist')
-            
-            localStorage.setItem(
-            "carwishlist",
-            JSON.stringify(state)
-            );
-        },
-        removeWishlist:(state,action)=>{
-            const updated =
-            state.filter(
-            product =>
-            product.id !==
-            action.payload
-            );
+// Get the currently logged-in user
+const getUser = () => {
+  return JSON.parse(localStorage.getItem("user"));
+};
 
-            localStorage.setItem(
-            "carwishlist",
-            JSON.stringify(updated)
-            );
+// Get wishlist for the logged-in user
+const getWishlist = () => {
+  const user = getUser();
 
-            return updated;
+  if (!user) {
+    return [];
+  }
 
-        }
+  const wishlistKey = `carwishlist_${user.id}`;
+
+  return JSON.parse(
+    localStorage.getItem(wishlistKey)
+  ) || [];
+};
+
+const wishlistSlice = createSlice({
+  name: "wishlist",
+
+  initialState: getWishlist(),
+
+  reducers: {
+    addWishlist: (state, action) => {
+      const exists = state.some(
+        product => product.id === action.payload.id
+      );
+
+      if (exists) {
+        alert("Already in wishlist!");
+        return;
+      }
+
+      state.push(action.payload);
+
+      const user = getUser();
+
+      if (user) {
+        localStorage.setItem(
+          `carwishlist_${user.id}`,
+          JSON.stringify(state)
+        );
+      }
+
+      alert("Added to wishlist!");
+    },
+
+    removeWishlist: (state, action) => {
+      const updated = state.filter(
+        product => product.id !== action.payload
+      );
+
+      const user = getUser();
+
+      if (user) {
+        localStorage.setItem(
+          `carwishlist_${user.id}`,
+          JSON.stringify(updated)
+        );
+      }
+
+      return updated;
+    },
+
+    loadWishlist: (state, action) => {
+      return action.payload;
     }
+  }
+});
 
-})
+export const {
+  addWishlist,
+  removeWishlist,
+  loadWishlist
+} = wishlistSlice.actions;
 
-export const{addWishlist,removeWishlist}=wishlistSlice.actions
-export default wishlistSlice.reducer
+export default wishlistSlice.reducer;

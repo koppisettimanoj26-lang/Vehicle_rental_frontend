@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { loadUserWishlist } from "../app/store";
 
 function Login() {
 
@@ -15,25 +16,42 @@ function Login() {
 
     e.preventDefault();
 
-    const response = await api.get(
-      `/users?email=${email}&password=${password}`
-    );
+    
+const response = await api.get(
+  `/users?email=${email}&password=${password}`
+);
 
-    if (response.data.length > 0) {
+if (response.data.length > 0) {
 
-      localStorage.setItem(
-        "user",
-        JSON.stringify(response.data[0])
-      );
+  const loggedInUser = response.data[0];
 
-      navigate("/");
+  // Store user details without password
+  const userData = {
+    id: loggedInUser.id,
+    name: loggedInUser.name,
+    email: loggedInUser.email,
+    role: loggedInUser.role
+  };
+
+  localStorage.setItem(
+    "user",
+    JSON.stringify(userData)
+  );
+
+  loadUserWishlist();
+
+  alert(
+    `Welcome ${loggedInUser.name}!`
+  );
+
+  navigate("/");
+
+} else {
+  alert("Invalid email or password!");
+}
+
       window.location.reload();
 
-    } else {
-
-      alert("Invalid Credentials");
-
-    }
   }
 
   return (
