@@ -2,6 +2,7 @@ import { useState } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { loadUserWishlist } from "../app/store";
+import { toast } from "react-toastify";
 
 function Login() {
 
@@ -16,22 +17,24 @@ function Login() {
 
     e.preventDefault();
 
+    try{
+
     
-const response = await api.get(
-  `/users?email=${email}&password=${password}`
-);
+      const response = await api.get(
+      `/users?email=${email}&password=${password}`
+      );
 
-if (response.data.length > 0) {
+      if (response.data.length > 0) {
 
-  const loggedInUser = response.data[0];
+        const loggedInUser = response.data[0];
 
-  // Store user details without password
-  const userData = {
-    id: loggedInUser.id,
-    name: loggedInUser.name,
-    email: loggedInUser.email,
-    role: loggedInUser.role
-  };
+        // Store user details without password
+        const userData = {
+          id: loggedInUser.id,
+          name: loggedInUser.name,
+          email: loggedInUser.email,
+          role: loggedInUser.role
+        };
 
   localStorage.setItem(
     "user",
@@ -40,19 +43,26 @@ if (response.data.length > 0) {
 
   loadUserWishlist();
 
-  alert(
+  toast.success(
     `Welcome ${loggedInUser.name}!`
   );
 
   navigate("/");
 
-} else {
-  alert("Invalid email or password!");
+  setTimeout(() => {
+    window.location.reload();
+  },800);
+
+  } else {
+    toast.error("Invalid email or password!");
+  }
+
+}catch(error){
+  toast.error("Login failed. please try again.");
 }
 
       window.location.reload();
-
-  }
+ }
 
   return (
 <div className='auth-container'>

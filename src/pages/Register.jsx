@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Register() {
 
@@ -21,17 +22,19 @@ function Register() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
+    try {
     await api.post("/users", {
     ...user,
     role: "user"
   });
 
-  alert("Registration successful!");
+  toast.success("Registration successful!");
 
     navigate("/login");
+  } catch(error){
+    toast.error("Registration Failed")
   }
-
+}
   return (
 <div className='auth-container'>
 <div className='auth-card'>

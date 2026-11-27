@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function AddVehicle() {
 
@@ -22,13 +23,18 @@ function AddVehicle() {
 
  async function handleSubmit(e) {
    e.preventDefault();
-
+  try{
    await api.post(
      "/vehicles",
      formData
    );
 
+   toast.success("Vehicle added successfully!");
+
    navigate("/vehicles");
+  }catch(error){
+    toast.error("Failed to add vehicle!");
+  }
  }
 
  return (

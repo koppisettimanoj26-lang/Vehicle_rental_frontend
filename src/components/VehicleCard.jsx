@@ -2,12 +2,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addWishlist } from "../features/wishlistSlice";
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 function VehicleCard({ vehicle, onDelete, onEdit }) {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const wishlist = useSelector(
+    state => state.wishlist
+  );
   const user = JSON.parse(
     localStorage.getItem("user")
   );
@@ -25,7 +29,17 @@ function VehicleCard({ vehicle, onDelete, onEdit }) {
 
         <button
           className="vehicle-wishlist-icon"
-          onClick={() => dispatch(addWishlist(vehicle))}
+          onClick={() => {
+            const exists = wishlist.some(
+              item => item.id === vehicle.id
+            );
+            if(exists){
+              toast.warning("Already in wishlist!");
+            }else{
+              dispatch(addWishlist(vehicle));
+              toast.success("Added to wishlist!");
+            }
+          }}
           title="Add to Wishlist"
         >
           ♥

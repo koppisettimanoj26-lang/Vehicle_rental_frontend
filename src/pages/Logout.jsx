@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loadWishlist } from "../features/wishlistSlice";
+import { toast } from "react-toastify";
 
 function Logout() {
 
@@ -16,6 +17,7 @@ function Logout() {
 
     // Remove logged-in user
     localStorage.removeItem("user");
+    toast.success("Logged out successfully");
 
     // Navigate to login page
     navigate("/login", { replace: true });

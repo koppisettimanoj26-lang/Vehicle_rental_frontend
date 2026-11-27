@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { cancelBooking } from "../features/bookingSlice";
 import "./MyBookings.css";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 function MyBookings() {
 
@@ -88,6 +89,8 @@ const bookings =
              className="delete-btn"
              onClick={() => {
             dispatch(cancelBooking(booking.id));
+
+            toast.success("Booking deleted successfully!");
         }}
         >
             Delete Booking

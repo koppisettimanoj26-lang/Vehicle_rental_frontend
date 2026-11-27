@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 
 import { addBooking } from "../features/bookingSlice";
 import "./Booking.css";
+import { toast } from "react-toastify";
 
 function Booking() {
 
@@ -113,7 +114,7 @@ function handleBooking(e) {
 
   dispatch(addBooking(booking));
 
-  //toast.success("Vehicle booked successfully!");
+  toast.success("Vehicle booked successfully!");
 
   navigate("/my-bookings");
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 import VehicleCard from "../components/VehicleCard";
 import { Link } from "react-router-dom";
-
+import { toast } from "react-toastify";
 function Vehicles() {
  const [vehicles, setVehicles] =
    useState([]);
@@ -18,6 +18,10 @@ function Vehicles() {
   const [sort, setSort] =
   useState("");
 
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
+
 
 
  useEffect(() => {
@@ -32,22 +36,26 @@ function Vehicles() {
 
      setVehicles(response.data);
    } catch (error) {
-     console.log(error);
+     toast.error("Failed to load vehicle!");
    }
  }
 
  async function deleteProduct(id) {
-
- await api.delete(
+try{
+  await api.delete(
    `/vehicles/${id}`
- );
+  );
 
- setVehicles(
+  setVehicles(
    vehicles.filter(
      product =>
      product.id !== id
    )
- );
+  );
+  toast.success("Vehicle deleted successfully!");
+  }catch(error){
+    toast.error("Failed to delete vehicle!");
+  }
 }
 const filteredProducts =
   vehicles.filter(
@@ -103,10 +111,11 @@ if (sort === "low") {
  return (
    <>
      <h1>Popular Vehicles</h1>
-
-     <Link to="/addVehicle" className="submit-btn" style={{marginBottom: '20px',display:"inline-block",width:'20%'}}>
+    {user?.role === "admin" &&( 
+    <Link to="/add-vehicle" className="submit-btn" style={{marginBottom: '20px',display:"inline-block",width:'20%'}}>
         Add Product
     </Link>
+    )}
 
 <div className="filters">
   <input

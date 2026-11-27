@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
+import { toast } from "react-toastify";
 
 function EditVehicle() {
 
@@ -42,13 +43,19 @@ function EditVehicle() {
  async function handleSubmit(e) {
 
    e.preventDefault();
-
+  try{
    await api.put(
      `/vehicles/${id}`,
      formData
    );
 
+   toast.success("Vehicle updated succesfully!");
+
    navigate("/vehicles");
+
+  }catch(error){
+    toast.error("Failed to update vehicle!");
+  }
  }
 
  return (

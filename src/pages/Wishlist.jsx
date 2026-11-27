@@ -8,6 +8,7 @@ import {
 } from "../features/wishlistSlice";
 
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Wishlist() {
   const navigate = useNavigate();
@@ -77,21 +78,23 @@ function Wishlist() {
                     </p>
 
                     <button
-                      onClick={() =>
+                      onClick={() =>{
                         dispatch(
                           removeWishlist(
                             product.id
                           )
-                        )
+                        );
+                        toast.success("Remove from wishlist!");
+                      }
                       }
                     >
                       Remove
                     </button>
 
                     <button
-                        onClick={() =>
+                      onClick={() =>
                         navigate("/booking", {
-                        state: { vehicle: product }
+                          state: { vehicle: product }
                         })
                       }
                     >

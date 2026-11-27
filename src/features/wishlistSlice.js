@@ -33,7 +33,6 @@ const wishlistSlice = createSlice({
       );
 
       if (exists) {
-        alert("Already in wishlist!");
         return;
       }
 
@@ -48,7 +47,6 @@ const wishlistSlice = createSlice({
         );
       }
 
-      alert("Added to wishlist!");
     },
 
     removeWishlist: (state, action) => {
