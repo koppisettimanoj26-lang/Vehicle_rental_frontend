@@ -37,7 +37,7 @@ function Login() {
         // Save user in LocalStorage
         sessionStorage.setItem(
           "user",
-        JSON.stringify(userData)
+          JSON.stringify(userData)
         );
 
         // Load user's wishlist
@@ -95,6 +95,25 @@ function Login() {
           <button className="submit-btn" type="submit">
             Login
           </button>
+
+          <div className="demo-login-box">
+            <h3>Demo Login Credentials</h3>
+            <p className="demo-note">
+              Use these accounts to explore the application.
+            </p>
+
+            <div className="demo-account">
+              <h4>Admin Account</h4>
+              <p><strong>Email:</strong> admin@gmail.com</p>
+              <p><strong>Password:</strong> Admin@123</p>
+            </div>
+
+            <div className="demo-account">
+              <h4>User Account</h4>
+              <p><strong>Email:</strong> user@gmail.com</p>
+              <p><strong>Password:</strong> User@123</p>
+            </div>
+          </div>
 
         </form>
 
