@@ -26,7 +26,7 @@ function VehicleCard({ vehicle, onDelete, onEdit }) {
           src={vehicle.image}
           alt={vehicle.name}
         />
-
+       {user && user.role === "user" && (
         <button
           className="vehicle-wishlist-icon"
           onClick={() => {
@@ -44,6 +44,7 @@ function VehicleCard({ vehicle, onDelete, onEdit }) {
         >
           ♥
         </button>
+       )}
 
       </div>
 

@@ -86,7 +86,7 @@ const bookings =
             </p>
 
              <button
-             className="delete-btn"
+             className="deleted-btn"
              onClick={() => {
             dispatch(cancelBooking(booking.id));
 

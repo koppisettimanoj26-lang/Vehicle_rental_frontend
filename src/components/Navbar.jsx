@@ -46,12 +46,15 @@ console.log("User role:", user?.role);
         </>
       )}
 
+      {user && user.role === "user" && (
+        <Link to="/wishlist">
+            Wishlist ({wishlist.length})
+        </Link>
+    )}
+
       {/* Logged-in users */}
       {user && (
         <>
-          <Link to="/wishlist">
-            Wishlist ({wishlist.length})
-          </Link>
 
           <Link to="/my-bookings">
             Booking History
@@ -63,6 +66,8 @@ console.log("User role:", user?.role);
 
         </>
       )}
+
+    
 
     </nav>
   );
