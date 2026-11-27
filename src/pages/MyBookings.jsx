@@ -13,7 +13,7 @@ function MyBookings() {
 
 
  const user = JSON.parse(
-  localStorage.getItem("user")
+  sessionStorage.getItem("user")
   );
 
 const allBookings = useSelector(

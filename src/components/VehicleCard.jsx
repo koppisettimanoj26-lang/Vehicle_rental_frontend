@@ -13,8 +13,8 @@ function VehicleCard({ vehicle, onDelete, onEdit }) {
     state => state.wishlist
   );
   const user = JSON.parse(
-    localStorage.getItem("user")
-  );
+  sessionStorage.getItem("user")
+);
 
   return (
     <div className="card">

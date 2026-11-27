@@ -32,7 +32,7 @@ store.subscribe(() => {
 export function loadUserWishlist() {
 
   const user = JSON.parse(
-    localStorage.getItem("user")
+    sessionStorage.getItem("user")
   );
 
   if (!user) {

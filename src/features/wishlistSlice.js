@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Get the currently logged-in user
 const getUser = () => {
-  return JSON.parse(localStorage.getItem("user"));
+  return JSON.parse(sessionStorage.getItem("user"));
 };
 
 // Get wishlist for the logged-in user

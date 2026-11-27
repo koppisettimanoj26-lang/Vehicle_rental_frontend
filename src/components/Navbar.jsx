@@ -5,15 +5,15 @@ import { useSelector } from "react-redux";
 function Navbar() {
 
   const user = JSON.parse(
-    localStorage.getItem("user")
+    sessionStorage.getItem("user")
   );
 
   const wishlist = useSelector(
     state => state.wishlist
   );
 
-  console.log("Logged-in user:", user);
-console.log("User role:", user?.role);
+  //console.log("Logged-in user:", user);
+ //console.log("User role:", user?.role);
 
   return (
     <nav>

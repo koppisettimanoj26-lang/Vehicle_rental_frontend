@@ -20,49 +20,37 @@ function AppRoutes() {
     <Routes>
 
       {/* Public pages */}
-      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      {/* Pages accessible to Admin and User */}
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute allowedRoles={["admin", "user"]}>
+            <Home />
+          </ProtectedRoute>
+        }
+      />
 
       <Route
-        path="/Vehicles"
-        element={<Vehicles />}
+        path="/vehicles"
+        element={
+          <ProtectedRoute allowedRoles={["admin", "user"]}>
+            <Vehicles />
+          </ProtectedRoute>
+        }
       />
 
       <Route
         path="/vehicles/:id"
-        element={<VehicleDetails />}
-      />
-
-      <Route
-        path="/register"
-        element={<Register />}
-      />
-
-      <Route
-        path="/login"
-        element={<Login />}
-      />
-
-      {/* Admin only */}
-      <Route
-        path="/add-vehicle"
         element={
-          <ProtectedRoute allowedRoles={["admin"]}>
-            <AddVehicle />
+          <ProtectedRoute allowedRoles={["admin", "user"]}>
+            <VehicleDetails />
           </ProtectedRoute>
         }
       />
 
-
-      <Route
-        path="/editvehicles/:id"
-        element={
-          <ProtectedRoute allowedRoles={["admin"]}>
-            <EditVehicle />
-          </ProtectedRoute>
-        }
-      />
-
-      {/* Both Admin and User */}
       <Route
         path="/wishlist"
         element={
@@ -90,9 +78,33 @@ function AppRoutes() {
         }
       />
 
+      {/* Admin-only pages */}
+      <Route
+        path="/add-vehicle"
+        element={
+          <ProtectedRoute allowedRoles={["admin"]}>
+            <AddVehicle />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/editvehicles/:id"
+        element={
+          <ProtectedRoute allowedRoles={["admin"]}>
+            <EditVehicle />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Logout */}
       <Route
         path="/logout"
-        element={<Logout />}
+        element={
+          <ProtectedRoute allowedRoles={["admin", "user"]}>
+            <Logout />
+          </ProtectedRoute>
+        }
       />
 
     </Routes>

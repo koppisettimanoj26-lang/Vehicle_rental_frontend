@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 function Booking() {
 
   const user = JSON.parse(
-  localStorage.getItem("user")
+  sessionStorage.getItem("user")
 );
 
   const location = useLocation();

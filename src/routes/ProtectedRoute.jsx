@@ -3,12 +3,22 @@ import { Navigate } from "react-router-dom";
 
 function ProtectedRoute({ children, allowedRoles }) {
 
-  const user = JSON.parse(
-    localStorage.getItem("user")
-  );
+  let user = null;
+
+  try {
+    user = JSON.parse(sessionStorage.getItem("user"));
+  } catch (error) {
+    sessionStorage.removeItem("user");
+  }
 
   // Check whether user is logged in
   if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  // Check whether user has a valid role
+  if (!["admin", "user"].includes(user.role)) {
+    localStorage.removeItem("user");
     return <Navigate to="/login" replace />;
   }
 

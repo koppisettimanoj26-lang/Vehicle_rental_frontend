@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
@@ -9,19 +10,16 @@ function Login() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
-
-  const [password, setPassword] =
-    useState("");
+  const [password, setPassword] = useState("");
 
   async function handleSubmit(e) {
 
     e.preventDefault();
 
-    try{
+    try {
 
-    
       const response = await api.get(
-      `/users?email=${email}&password=${password}`
+        `/users?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
       );
 
       if (response.data.length > 0) {
@@ -36,63 +34,73 @@ function Login() {
           role: loggedInUser.role
         };
 
-  localStorage.setItem(
-    "user",
-    JSON.stringify(userData)
-  );
+        // Save user in LocalStorage
+        sessionStorage.setItem(
+          "user",
+        JSON.stringify(userData)
+        );
 
-  loadUserWishlist();
+        // Load user's wishlist
+        loadUserWishlist();
 
-  toast.success(
-    `Welcome ${loggedInUser.name}!`
-  );
+        toast.success(`Welcome ${loggedInUser.name}!`);
 
-  navigate("/");
+        // Redirect based on role
+        if (userData.role === "admin") {
+          navigate("/", { replace: true });
+        } else if (userData.role === "user") {
+          navigate("/", { replace: true });
+        } else {
+          localStorage.removeItem("user");
+          toast.error("Invalid user role!");
+        }
 
-  setTimeout(() => {
-    window.location.reload();
-  },800);
+      } else {
 
-  } else {
-    toast.error("Invalid email or password!");
+        toast.error("Invalid email or password!");
+
+      }
+
+    } catch (error) {
+
+      console.log(error);
+      toast.error("Login failed. Please try again.");
+
+    }
   }
 
-}catch(error){
-  toast.error("Login failed. please try again.");
-}
-
-      window.location.reload();
- }
-
   return (
-<div className='auth-container'>
-<div className='auth-card'>
+    <div className="auth-container">
 
-    <form onSubmit={handleSubmit}>
+      <div className="auth-card">
 
-      <input
-        type="email"
-        placeholder="Email"
-        onChange={(e) =>
-          setEmail(e.target.value)
-        }
-      />
+        <form onSubmit={handleSubmit}>
 
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) =>
-          setPassword(e.target.value)
-        }
-      />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-      <button className='submit-btn'>
-        Login
-      </button>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-    </form>
-</div>
-</div>
+          <button className="submit-btn" type="submit">
+            Login
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
   );
 }
 
